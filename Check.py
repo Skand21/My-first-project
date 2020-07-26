@@ -1,12 +1,21 @@
-p = 600851475143
+#Simple Numbers
 
-for q in range (2, p):
-  if (p % q == 0):
-    z = p / q
-    k = 2
-    while ((z % k) != 0) and ((z != k )):
-      z = z - 1
-      for k in range (2,z):
-        conclusion = (k)
-    if conclusion == 0:
-      print (conclusion)
+numbermain = 600851475143
+
+x = 0
+z = 0
+
+for f in range (2, numbermain):
+  if (numbermain % f == 0):
+    numbermax = numbermain / f
+    for i in range (2, int(numbermax + 1)):
+      if i == numbermax:
+        x = 1
+      while x == 0:
+        if ((numbermax % i) == 0):
+          x = 1
+          z += 1
+        else:
+          x = 1
+    if z == 0:
+      print (numbermax)

@@ -1,10 +1,16 @@
 '''Простое число №3'''
 
 number = int(46)
+key = 0
 
-for p in range (2, number + 1):
-  while ((number % p) != 0) and (number != p):
-    print (p)
+while key == 0:
+  for i in range (2, number):
+    if i == simplenumbers:
+      z = number % i
+      if  (z != 0):
+        if 
+        maxshare = i
+
 
 
 
