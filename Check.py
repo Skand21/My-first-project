@@ -1,20 +1,9 @@
-def bread(func):
-    def wrapper():
-        print()
-        func()
-        print("<\______/>")
-    return wrapper
+def start_end(x):
+    if x == 1:
+        return print (x-11)
+    if x != 1:
+        return input (x)
 
-def ingredients(func):
-    def wrapper():
-        print("помидоры")
-        func()
-        print("салат")
-    return wrapper
+x = 2
 
-@bread
-@ingredients
-def sandwich(food="--ветчина--"):
-    print(food)
-
-sandwich()
+print (start_end(x))
