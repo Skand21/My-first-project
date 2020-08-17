@@ -1,10 +1,7 @@
-def startend():
-    while not int(start_end) == 1:
-        while not ((introduction == "НЕТ") or (introduction == "ДА") or (introduction == "Да") or (introduction == "Нет") or (introduction == "нет") or (introduction == "да")):
-            print ('''Извините, но я не знаю такой команды,
-попробуйте ответить на вопрос "Потнятно?"
-"Да" или "Нет"''')
-        introduction = input ()
+
+
+##! Начало программы
+
 
 print ('''Привет, решил провести время с пользой?
 -Молодец!
