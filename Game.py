@@ -36,28 +36,28 @@ def error(index_game): # Проверяет введённый параметр 
   return index_game
 
 def game(enter_game): # Направление на игру
-  if enter_game == 0:
+  if int(enter_game) == 0:
     return exit_of_game()
-  if enter_game == 1:
+  if int(enter_game) == 1:
     return game_1()
-  if enter_game == 2:
+  if int(enter_game) == 2:
     return game_2()
-  if enter_game == 3:
+  if int(enter_game) == 3:
     return game_3()
-  if enter_game == 4:
+  if int(enter_game) == 4:
     return game_4()
 
-def game_1(): # Первая игра
+def game_1(weight = 0): # Первая игра
   print ()
-  print ('Чтобы посчитать, сколько Вам нужно выпивать воды в сутки мне нужно знать ваш вес')
-  print ('Введите свой вес')
-  weight = int(input ())
+  print ('Чтобы посчитать, сколько Вам нужно выпивать воды в сутки мне нужно знать Ваш вес')
+  print ('Введите свой вес:')
+  weight = input ()
   weight = error(weight)
-  while (not(weight > 10)) and (not(weight < 200)):
-      print ('Введите свой НАСТОЯЩИЙ вес')
-      weight = int(input ())
-      weight = error(weight)
-  print (round((weight) * 0.03), 'литров воды Вам нужно выпивать в сутки, чтобы водяной баланс находился в норме')
+  while not((int(weight) > 10) and (int(weight) < 200)):
+    print ('Введите свой НАСТОЯЩИЙ вес')
+    weight = input ()
+    weight = error(weight)
+  print (round(int(weight) * 0.03, 2), 'литров воды Вам нужно выпивать в сутки, чтобы водяной баланс находился в норме')
   print () 
 
 

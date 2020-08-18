@@ -1,9 +1,13 @@
 def start_end(x):
     if x == 1:
-        return print (x-11)
+        return one()
     if x != 1:
-        return input (x)
+        return _not_one_()
 
-x = 2
+def one():
+    return print(1)
+def _not_one_():
+    return print(-879465132)
 
-print (start_end(x))
+x = 12
+start_end(x)
