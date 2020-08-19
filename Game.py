@@ -6,13 +6,77 @@ def indents(): # Отступы
   print()
   pass
 
+def introduction(): # Вступление
+  print ('''Привет, решил провести время с пользой?
+-Молодец!
+Основные правила игры:
+Я буду обращаться на "Вы" независимо кто и как ты, ой, Вы
+Чтобы ответить мне набирайте на клавиатуре ответ и нажимайте Enter
+Нажмите "1" и Enter: ''')
+  introduction = input ()
+  introduction = int(error(introduction))
+  verification_of_consent(introduction)
+  indents()
+  print ('Так, продолжаем')
+  nickname = name_user()
+  return nickname
+
+def name_user(): # Знакомство с пользователем
+  print ('Для начала игры введите своё имя')
+  name  = input ()
+  name = name_verification(name)
+  print ('Теперь введите свою фамилию') 
+  secondname = input ()
+  secondname = secondname_verification(secondname)
+  print ('Замечательно,' , name + ', теперь напишите год Вашего рождения')
+  year = 2020
+  age = input()
+  age = int(error(age))
+  age = year - age
+  while (age <= 0) or (age >= 120):
+    print('Хмм.. Некорректный год, попробуйте ввести свой возраст')
+    age = input()
+    age = int(error(age))
+  nickname = age_verification_nickname(age)
+  return nickname
+
+def age_verification_nickname(age): # Проверка на возраст + никнейм
+  if (12 - age <= 0):
+    print('Вы успешно зарегестрировались, под ником "SvinkaPeppa_225".. эмм.. стоп! Вы не ввёли свой ник, прошу')
+    nickname = input ()
+    return nickname
+  else:
+    print ('Извини, но ты ещё слишком мал.')
+    leave_the_game()
+
+
+def name_verification(name): # Проверяет имя (чтобы были только буквы)
+  while not name.isalpha():
+    print ('Введите настоящее имя:')
+    name = input()
+  return name
+  
+def secondname_verification(secondname): # Проверяет фамилию (чтобы были только буквы)
+  while not secondname.isalpha():
+    print ('Введите настоящую фамилию:')
+    secondname = input()
+  return secondname
+
+def verification_of_consent(introduction): # Проверка на введенное подтверждение - '1'
+  while introduction != 1:
+    print ('''Извините, но я не знаю такой команды.
+Попробуйте повторить попытку:''')
+    introduction = input ()
+    introduction = int(error(introduction))
+  return introduction
+
 def menu(): # Меню
   indents()
-  print ('''Замечательно, ', nickname + ', теперь выберите игру:
+  print ('''Замечательно, ''', nickname  ,''', теперь выберите игру:
 
 Сколько воды нужно пить в день -  выберите "1"
 Тест "Насколько богат Ваш лексикон -  выберите "2"
-Насколько вы отличаетесь от "среднего человека" -  выберите "3"
+Sorry, but this game is in development -  выберите "3"
 Угадай число -  выберите "4"
 
 Чтобы выйти с игры - нажмите "0"
@@ -46,7 +110,7 @@ def error(index_game): # Проверяет введённый параметр 
 
 def game(enter_game): # Направление на игру
   if int(enter_game) == 0:
-    return exit_of_game()
+    return leave_the_game()
   if int(enter_game) == 1:
     return game_1()
   if int(enter_game) == 2:
@@ -88,7 +152,7 @@ def one_two_three (ask): # Проверяет, чтобы ответ == 1, 2 и�
     ask = int(error(ask))
   return ask
   
-def questions():
+def questions(): # Вопросы
   ask_number = 0
   progress = 0
   ask_number += int(1)
@@ -279,10 +343,58 @@ def questions():
         print ('Вы ответили на', progress ,'вопросов верно. Хороший результат, но даже это нужно довести до идеала. Дерзай!')
     if (progress == 10):
         print ('Вы ответили на все', progress ,'вопросов верно. Вы молодец!!! Но... "Достигнув вершины приготовься оказаться на дне следующего уровня" Не останавливайс на достигнутом')
-    pass
+  pass
+
+def game_3(): # Третяя игра #? Доделать!!!
+  indents()
+  print('Sorry, but this game is in development')
+  indents()
+
+def game_4(): # Четвёртая игра
+  indents()
+  print ('''Суть игры:
+Угадать случайно загаданное мной число в диапазоне от 0 до 100 включительно за наименьшее количество попыток.
+Такие слова как: "Лёд", "Холодно", "Тепло", "Горячо", "Огонь", "Угадали!!!" будут помогать определить насколько далеко вы от цели''')
+  print ('Введите число:')
+  indents()
+  known_number = input ()
+  known_number = int(error(known_number))
+
+  from random import randint
+  unknown_number = int(randint (0, 100))
+  attempts = 1
+  
+  while (unknown_number != known_number):
+      attempts += 1
+      if (known_number < 0):
+          print ('Ошибка, это число меньше 0')
+      if (known_number > 100):
+          print ('Ошибка, это число больше 100')
+      if abs(unknown_number - known_number) <= 5:
+          print ('Огонь')
+      elif abs(unknown_number - known_number) <= 20:
+          print ('Горячо')
+      elif abs(unknown_number - known_number) <= 35:
+          print ('Тепло')
+      elif abs(unknown_number - known_number) <= 60:
+          print ('Холодно')
+      elif abs(unknown_number - known_number) <= 100:
+          print ('Лёд')
+      known_number = input ()
+      known_number = int(error(known_number))
+  pass
+     
+  print ('Угадали!!!')
+  print ('Ура, у Вас получилось!!! Спустя', attempts, 'попыток Вы угадали число!')
+  indents()
+  
+def leave_the_game(): # Выход из игры
+  print('Приходи ещё!!!')
+  exit()
 
 #! Начало программы
 number_of_game = 5
+nickname = introduction()
 while number_of_game != 0:
   menu ()
   number_of_game = enter_game()
