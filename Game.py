@@ -126,7 +126,7 @@ def game_1(weight = 0): # Первая игра
   print ('Введите свой вес:')
   weight = input ()
   weight = error(weight)
-  while not((int(weight) > 10) and (int(weight) < 200)):
+  while not((int(weight) > 10) and (int(weight) < 350)):
     print ('Введите свой НАСТОЯЩИЙ вес')
     weight = input ()
     weight = error(weight)
@@ -350,7 +350,7 @@ def game_3(): # Третяя игра #? Доделать!!!
   print('Sorry, but this game is in development')
   indents()
 
-def game_4(): # Четвёртая игра
+def game_4(): # Четвёртая игра #? Доделать уровни сложности(рандинт растянуть до  100, 500, 1000 + добавить Lava + сделать очки
   indents()
   print ('''Суть игры:
 Угадать случайно загаданное мной число в диапазоне от 0 до 100 включительно за наименьшее количество попыток.
@@ -380,9 +380,12 @@ def game_4(): # Четвёртая игра
           print ('Холодно')
       elif abs(unknown_number - known_number) <= 100:
           print ('Лёд')
+
       known_number = input ()
       known_number = int(error(known_number))
-  pass
+      if attempts == 15:
+        print('Извините, Вы проиграли')
+        return menu()
      
   print ('Угадали!!!')
   print ('Ура, у Вас получилось!!! Спустя', attempts, 'попыток Вы угадали число!')
