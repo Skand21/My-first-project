@@ -350,47 +350,81 @@ def game_3(): # Третяя игра #? Доделать!!!
   print('Sorry, but this game is in development')
   indents()
 
-def game_4(): # Четвёртая игра #? Доделать уровни сложности(рандинт растянуть до  100, 500, 1000 + добавить Lava + сделать очки
+def game_4(): # Четвёртая игра #? Доделать уровни сложности рандинт растянуть до  100, 500, 1000 + сделать очки
+  eggs = 0
+  level = 1
   indents()
+  l = value_l(level)
   print ('''Суть игры:
-Угадать случайно загаданное мной число в диапазоне от 0 до 100 включительно за наименьшее количество попыток.
-Такие слова как: "Лёд", "Холодно", "Тепло", "Горячо", "Огонь", "Угадали!!!" будут помогать определить насколько далеко вы от цели''')
-  print ('Введите число:')
+Угадать случайно загаданное мной число в диапазоне от 0 до''', l,'''включительно за наименьшее количество попыток.
+Такие слова как: "Лёд", "Холодно", "Тепло", "Горячо", "Огонь", "Лава", "Угадали!!!" будут помогать определить насколько далеко вы от цели''')
+  while eggs != 1:
+    l = verification_fourth_game(level)
+  
+  
+def verification_fourth_game (level): # Проверка на угаданное число
   indents()
+  attempts = 1
+  l = value_l(level)
+  print ('Угадать случайно загаданное мной число в диапазоне от 0 до', l,'включительно за наименьшее количество попыток.')
+  print ('Введите число:')
   known_number = input ()
   known_number = int(error(known_number))
-
   from random import randint
-  unknown_number = int(randint (0, 100))
-  attempts = 1
-  
-  while (unknown_number != known_number):
-      attempts += 1
-      if (known_number < 0):
-          print ('Ошибка, это число меньше 0')
-      if (known_number > 100):
-          print ('Ошибка, это число больше 100')
-      if abs(unknown_number - known_number) <= 5:
-          print ('Огонь')
-      elif abs(unknown_number - known_number) <= 20:
-          print ('Горячо')
-      elif abs(unknown_number - known_number) <= 35:
-          print ('Тепло')
-      elif abs(unknown_number - known_number) <= 60:
-          print ('Холодно')
-      elif abs(unknown_number - known_number) <= 100:
-          print ('Лёд')
+  unknown_number = int(randint (0, l))
 
-      known_number = input ()
-      known_number = int(error(known_number))
-      if attempts == 15:
-        print('Извините, Вы проиграли')
-        return menu() #? Доделать, чтобы была 1 менюшка
-     
-  print ('Угадали!!!')
-  print ('Ура, у Вас получилось!!! Спустя', attempts, 'попыток Вы угадали число!')
-  indents()
-  
+  while (unknown_number != known_number) and (attempts != 20):
+    attempts += 1
+    while (known_number <= 0) or (known_number > l):
+      if (known_number <= 0):
+          print ('Ошибка, это число меньше 0')
+          known_number = input ('Введите число ещё раз:')
+          known_number = int(error(known_number))
+      if (known_number > l):
+          print ('Ошибка, это число больше', l)
+          known_number = input ('Введите число ещё раз:')
+          known_number = int(error(known_number))
+
+    if abs(unknown_number - known_number) <= l * 0.02:
+        print ('Лава')
+    elif abs(unknown_number - known_number) <= l * 0.1:
+        print ('Огонь')
+    elif abs(unknown_number - known_number) <= l * 0.25:
+        print ('Горячо')
+    elif abs(unknown_number - known_number) <= l * 0.4:
+        print ('Тепло')
+    elif abs(unknown_number - known_number) <= l * 0.6:
+        print ('Холодно')
+    elif abs(unknown_number - known_number) <= l * 0.75:
+        print ('Лёд')
+
+    known_number = input ()
+    known_number = int(error(known_number))
+
+  if unknown_number != known_number:
+    print('Извините, Вы проиграли')
+    eggs = 1
+  else:
+    print ('Угадали!!!')
+    print ('Ура, у Вас получилось!!! Спустя', attempts, 'попыток Вы угадали число!')
+    level += 1
+    print ('Вы переходите на уровень', level)
+    indents()
+    return l
+
+def value_l(level) : # Условия уровня
+  if level == 1:
+    l = 50
+  elif level == 2:
+    l = 100
+  elif level == 3:
+    l = 250
+  elif level == 4:
+    l = 500
+  elif level == 5:
+    l = 1000
+  return l
+
 def leave_the_game(): # Выход из игры
   print('Приходи ещё!!!')
   exit()
