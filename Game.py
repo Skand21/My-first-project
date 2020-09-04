@@ -126,7 +126,7 @@ def game_1(weight = 0): # Первая игра
   print ('Введите свой вес:')
   weight = input ()
   weight = error(weight)
-  while not((int(weight) > 10) and (int(weight) < 350)):
+  while not((int(weight) > 10) and (int(weight) < 200)):
     print ('Введите свой НАСТОЯЩИЙ вес')
     weight = input ()
     weight = error(weight)
@@ -350,9 +350,13 @@ def game_3(): # Третяя игра #? Доделать!!!
   print('Sorry, but this game is in development')
   indents()
 
+
 def game_4(): # Четвёртая игра #? Доделать уровни сложности рандинт растянуть до  100, 500, 1000 + сделать очки
   eggs = 0
   level = 1
+
+def game_4(): # Четвёртая игра
+
   indents()
   l = value_l(level)
   print ('''Суть игры:
@@ -378,6 +382,7 @@ def verification_fourth_game (level): # Проверка на угаданное
     while (known_number <= 0) or (known_number > l):
       if (known_number <= 0):
           print ('Ошибка, это число меньше 0')
+
           known_number = input ('Введите число ещё раз:')
           known_number = int(error(known_number))
       if (known_number > l):
@@ -424,6 +429,28 @@ def value_l(level) : # Условия уровня
   elif level == 5:
     l = 1000
   return l
+
+  def h(known_number,unknown_number):
+    if (known_number > 100):
+        print ('Ошибка, это число больше 100')
+    if abs(unknown_number - known_number) <= 5:
+        print ('Огонь')
+    elif abs(unknown_number - known_number) <= 20:
+        print ('Горячо')
+    elif abs(unknown_number - known_number) <= 35:
+        print ('Тепло')
+    elif abs(unknown_number - known_number) <= 60:
+        print ('Холодно')
+    elif abs(unknown_number - known_number) <= 100:
+        print ('Лёд')
+    known_number = input ()
+    known_number = int(error(known_number))
+  pass
+  
+  print ('Угадали!!!')
+  print ('Ура, у Вас получилось!!! Спустя', attempts, 'попыток Вы угадали число!')
+  indents()
+  
 
 def leave_the_game(): # Выход из игры
   print('Приходи ещё!!!')
