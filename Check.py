@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def error(index_game): # Проверяет введённый параметр на наличие ошибок(только для чисел!)
   x = 1
   if x == 1:
@@ -82,3 +83,25 @@ def l(level) : # Условия уровня
   elif level == 5:
     l = 1000
   return l
+=======
+def bread(func):
+    def wrapper():
+        print()
+        func()
+        print("<\______/>")
+    return wrapper
+
+def ingredients(func):
+    def wrapper():
+        print("помидоры")
+        func()
+        print("салат")
+    return wrapper
+
+@bread
+@ingredients
+def sandwich(food="--ветчина--"):
+    print(food)
+
+sandwich()
+>>>>>>> parent of f494916... Попытался сделать меню
